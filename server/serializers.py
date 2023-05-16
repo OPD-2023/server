@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
-from server.models import Partner, Direction, Project, History
-from server.models import Product
+from server.models import Partner, Direction, History, Product, Service, SubService
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -22,16 +21,18 @@ class DirectionSerializer(serializers.ModelSerializer):
         fields = ['id', 'description']
 
 
-class ProjectSerializer(serializers.ModelSerializer):
+class SubServiceSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Project
+        model = SubService
         fields = ['id', 'description']
 
 
 class ServiceSerializer(serializers.ModelSerializer):
+    sub_services = SubServiceSerializer(many=True)
+
     class Meta:
-        model = Project
-        fields = ['id', 'description']
+        model = Service
+        fields = ['id', 'title', 'description', 'sub_services']
 
 
 class HistorySerializer(serializers.ModelSerializer):

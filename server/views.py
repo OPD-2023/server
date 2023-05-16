@@ -1,9 +1,8 @@
 from rest_framework import generics
 
-from server.models import Partner, Direction, Project, Service, Product, History
-from server.serializers import PartnerSerializer, DirectionSerializer, ProjectSerializer, ServiceSerializer, \
-    HistorySerializer
-from server.serializers import ProductSerializer
+from server.models import Partner, Direction, Service, Product, History, SubService
+from server.serializers import PartnerSerializer, DirectionSerializer, HistorySerializer, ServiceSerializer, \
+    ProductSerializer, SubServiceSerializer
 
 
 class ProductList(generics.ListCreateAPIView):
@@ -36,16 +35,6 @@ class DirectionDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = DirectionSerializer
 
 
-class ProjectList(generics.ListCreateAPIView):
-    queryset = Project.objects.all()
-    serializer_class = ProjectSerializer
-
-
-class ProjectDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Project.objects.all()
-    serializer_class = ProjectSerializer
-
-
 class ServiceList(generics.ListCreateAPIView):
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
@@ -54,6 +43,16 @@ class ServiceList(generics.ListCreateAPIView):
 class ServiceDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
+
+
+class SubServiceList(generics.ListCreateAPIView):
+    queryset = SubService.objects.all()
+    serializer_class = SubServiceSerializer
+
+
+class SubServiceDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = SubService.objects.all()
+    serializer_class = SubServiceSerializer
 
 
 class HistoryList(generics.ListCreateAPIView):

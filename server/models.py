@@ -38,23 +38,26 @@ class Direction(models.Model):
         return self.description
 
 
-class Project(models.Model):
-    description = models.TextField(verbose_name='Описание')
-
-    class Meta:
-        verbose_name = 'Проект'
-        verbose_name_plural = 'Проекты'
-
-    def __str__(self):
-        return self.description
-
-
 class Service(models.Model):
+    title = models.TextField(max_length=100, default='Услуга', verbose_name='Заголовок')
     description = models.TextField(verbose_name='Описание')
 
     class Meta:
         verbose_name = 'Услуга'
         verbose_name_plural = 'Услуги'
+
+    def __str__(self):
+        return self.title
+
+
+class SubService(models.Model):
+    description = models.TextField(verbose_name='Описание')
+    service = models.ForeignKey(Service, null=True, on_delete=models.deletion.SET_NULL, related_name='sub_services',
+                                verbose_name='Услуга')
+
+    class Meta:
+        verbose_name = 'Подуслуга'
+        verbose_name_plural = 'Подуслуги'
 
     def __str__(self):
         return self.description
