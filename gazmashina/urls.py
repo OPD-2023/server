@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from server.views import ProductList, ProductDetail, PartnerList, PartnerDetail, DirectionList, DirectionDetail, \
     ServiceList, ServiceDetail, HistoryList, HistoryDetail, SubServiceList, SubServiceDetail
@@ -35,3 +37,5 @@ urlpatterns = [
     path('history/', HistoryList.as_view(), name='history_list'),
     path('history/<int:pk>/', HistoryDetail.as_view(), name='history_detail')
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
