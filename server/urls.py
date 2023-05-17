@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.urls import path
 
 from server.views import ProductList, ProductDetail, PartnerList, PartnerDetail, DirectionList, DirectionDetail, \
-    ServiceDetail, ServiceList, HistoryList, HistoryDetail, SubServiceList, SubServiceDetail
+    ServiceDetail, ServiceList, HistoryList, HistoryDetail, SubServiceList, SubServiceDetail, CategoryList
 
 urlpatterns = [
     static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
@@ -19,4 +19,6 @@ urlpatterns = [
     path('sub_services/<int:pk>/', SubServiceDetail.as_view(), name='sub_service_detail'),
     path('history/', HistoryList.as_view(), name='history_list'),
     path('history/<int:pk>/', HistoryDetail.as_view(), name='history_detail')
+    path('category/', CategoryList.as_view(), name='category_list'),
+    path('category/<int:pk>/', ProductList.as_view(), name='product_list_by_category')
 ]
