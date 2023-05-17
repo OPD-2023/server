@@ -18,7 +18,7 @@ urlpatterns = [
     path('sub_services/', SubServiceList.as_view(), name='sub_service_list'),
     path('sub_services/<int:pk>/', SubServiceDetail.as_view(), name='sub_service_detail'),
     path('history/', HistoryList.as_view(), name='history_list'),
-    path('history/<int:pk>/', HistoryDetail.as_view(), name='history_detail')
+    path('history/<int:pk>/', HistoryDetail.as_view(), name='history_detail'),
     path('category/', CategoryList.as_view(), name='category_list'),
     path('category/<int:pk>/', ProductList.as_view(), name='product_list_by_category')
 ]
