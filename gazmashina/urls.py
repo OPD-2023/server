@@ -20,7 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from server.views import ProductList, ProductDetail, PartnerList, PartnerDetail, DirectionList, DirectionDetail, \
-    ServiceList, ServiceDetail, HistoryList, HistoryDetail, SubServiceList, SubServiceDetail
+    ServiceList, ServiceDetail, HistoryList, HistoryDetail, SubServiceList, SubServiceDetail, ContactDetail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,7 +35,8 @@ urlpatterns = [
     path('sub_services/', SubServiceList.as_view(), name='sub_service_list'),
     path('sub_services/<int:pk>/', SubServiceDetail.as_view(), name='sub_service_detail'),
     path('history/', HistoryList.as_view(), name='history_list'),
-    path('history/<int:pk>/', HistoryDetail.as_view(), name='history_detail')
+    path('history/<int:pk>/', HistoryDetail.as_view(), name='history_detail'),
+    path('contacts/', ContactDetail.as_view(), name='contact_detail')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

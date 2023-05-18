@@ -1,8 +1,9 @@
+from django.http import Http404
 from rest_framework import generics
 
-from server.models import Partner, Direction, Service, Product, History, SubService
+from server.models import Partner, Direction, Service, Product, History, SubService, Contact
 from server.serializers import PartnerSerializer, DirectionSerializer, HistorySerializer, ServiceSerializer, \
-    ProductSerializer, SubServiceSerializer
+    ProductSerializer, SubServiceSerializer, ContactSerializer
 
 
 class ProductList(generics.ListCreateAPIView):
@@ -63,3 +64,15 @@ class HistoryList(generics.ListCreateAPIView):
 class HistoryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = History.objects.all()
     serializer_class = HistorySerializer
+
+
+class ContactDetail(generics.RetrieveUpdateAPIView):
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer
+
+    def get_object(self):
+        queryset = self.get_queryset()
+        obj = queryset.first()
+        if obj is None:
+            raise Http404("Contact does not exist.")
+        return obj
