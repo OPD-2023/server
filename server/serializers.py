@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from server.models import Partner, Direction, History, Product, Service, SubService
+from server.models import Partner, Direction, History, Product, Service, SubService, Contact
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -39,3 +39,9 @@ class HistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = History
         fields = ['id', 'description', 'status', 'image_path']
+
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = ['address', 'phones', 'emails']

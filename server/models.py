@@ -78,3 +78,16 @@ class History(models.Model):
 
     def __str__(self):
         return self.description
+
+
+class Contact(models.Model):
+    address = models.CharField(max_length=200)
+    phones = models.JSONField(default=list)
+    emails = models.JSONField(default=list)
+
+    class Meta:
+        verbose_name = 'Контакты'
+        verbose_name_plural = 'Контакты'
+
+    def __str__(self):
+        return self.address
